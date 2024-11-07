@@ -38,7 +38,5 @@ If you look at  TodoSection.jsx you will find that we use useState to handle the
 ```
 5. FREE TIME :  Improve the app as you want.
 
-.ss
-
 
 
