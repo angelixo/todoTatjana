@@ -1,27 +1,25 @@
+import React from 'react';
+import { NavBar } from './components/Navbar';
+import { UserProvider } from './contexts/userContext';
+import { UserProfileSection } from './sections/UserProfileSection';
+import { ToDoSection } from './sections/TodoSection';
+
 import './App.css';
+import { TodoProvider } from './contexts/TodoReducer';
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+      <UserProvider>
+        <NavBar />
+        <div className="content">
+          <UserProfileSection />
+          <TodoProvider>
+            <ToDoSection />
+          </TodoProvider>
+        </div>
+      </UserProvider>
     </div>
   );
 }
