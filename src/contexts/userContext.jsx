@@ -5,6 +5,7 @@ const UserContext = createContext();
 
 // Provider (we need to WRAP our parent on this) Check app.jsx
 export const UserProvider = ({ children }) => {
+  
   const [user, setUser] = useState({
     username: 'angel',
     usermail: '',

@@ -13,17 +13,38 @@ export const ToDoSection = () => {
         }
     ]);
     const [newTodo, setNewTodo] = React.useState("");
+    const [errors, setErrors] = React.useState([]);
     const [doneTodosCount, setDoneTodosCount] = React.useState()
-   
+
     React.useEffect(() => {
         setDoneTodosCount(todos.filter(t => t.completed).length);
     }, [todos])
 
+    React.useEffect(() => {
+        setErrors([])
+    }, [newTodo])
+
     const createNewTodo = () => {
-        setTodos([...todos, {task: newTodo, completed: false}])
+        const errors = validateNewTodo()
+
+        if (errors.length) {
+            setErrors(errors);
+            return;
+        }
+
+        setTodos([...todos, { task: newTodo, completed: false }])
         setNewTodo("")
     }
 
+    const validateNewTodo = () => {
+        const errors = [];
+
+        if (newTodo.trim().length <= 3) {
+            errors.push("Write something more...")
+        }
+
+        return errors;
+    }
 
     return <Section title="ToDos">
         <div className="resume">
@@ -47,8 +68,9 @@ export const ToDoSection = () => {
                 </div>)}
             </div>
         </div>
-        <div className="newTodo">
-            <input type='text' value={newTodo} onChange={(e) => setNewTodo(e.target.value)}/>
+        <div className="form-container" style={{ maxWidth: '200px' }}>
+            <input type='text' value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
+            {errors.length ? errors[0] : ''}
             <button onClick={createNewTodo}>Create new ToDo</button>
         </div>
 

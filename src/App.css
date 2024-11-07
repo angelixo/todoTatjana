@@ -103,3 +103,6 @@ body {
 .newTodo {
   margin-top: 1em;
 } 
+.newTodoForm {
+  display: flex;
+}
